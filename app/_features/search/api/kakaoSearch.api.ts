@@ -1,9 +1,10 @@
 import ky from "ky";
 import type { KakaoSearchResponse } from "@/app/_features/search/types/Search";
 
-export const searchWebApi = {
+export const searchBookApi = {
     fetchSearchWeb: async (
         query: string,
+        target?: string,
         sort?: string,
         page?: number,
         size?: number,
@@ -21,6 +22,9 @@ export const searchWebApi = {
             query,
         };
 
+        if (target) {
+            searchParams.target = target;
+        }
         if (sort) {
             searchParams.sort = sort.toLowerCase();
         }
@@ -32,7 +36,7 @@ export const searchWebApi = {
         }
 
         const res = await ky.get<KakaoSearchResponse>(
-            `${baseUrl}/v2/search/web`,
+            `${baseUrl}/v3/search/book`,
             {
                 searchParams,
                 headers: {

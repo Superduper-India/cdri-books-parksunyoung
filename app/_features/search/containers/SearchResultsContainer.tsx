@@ -9,7 +9,7 @@ interface SearchContainerProps {
     searchQuery?: string;
 }
 
-export default async function SearchContainer({
+export default async function SearchResultsContainer({
     searchQuery,
 }: SearchContainerProps) {
     let searchData = null;

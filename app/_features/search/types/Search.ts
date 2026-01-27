@@ -1,10 +1,18 @@
 // Kakao 검색 API 응답 타입 정의
 
-// 검색 결과 문서 타입
+// 검색 결과 문서 타입 (책 검색)
 export interface SearchDocument {
-    datetime: string;
+    authors: string[];
     contents: string;
+    datetime: string;
+    isbn: string;
+    price: number;
+    publisher: string;
+    sale_price: number;
+    status: string;
+    thumbnail: string;
     title: string;
+    translators: string[];
     url: string;
 }
 
