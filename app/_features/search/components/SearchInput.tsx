@@ -32,7 +32,7 @@ export default function SearchInput() {
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder="검색어를 입력하세요"
-          className="w-full rounded-full bg-bg-gray py-3 pr-4 pl-12 text-text-placeholder text-text-primary focus:border-transparent focus:outline-none"
+          className="w-full rounded-full bg-bg-gray py-3 pr-4 pl-12 text-text-primary focus:border-transparent focus:outline-none"
         />
       </div>
       <button

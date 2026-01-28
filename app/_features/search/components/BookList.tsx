@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "@/app/_components/layout/Loader";
 import BookItem from "@/app/_features/search/components/BookItem";
 import { useScroll } from "@/app/_features/search/hooks/useScroll";
 import type { KakaoSearchResponse } from "@/app/_features/search/types/Search";
@@ -28,14 +29,14 @@ export default function BookList({ searchData }: SearchResultsContainerProps) {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
 
-  if (!searchData || searchData.documents.length === 0) {
-    return null;
-  }
-
   const { documents, hasMore, loadMoreDocuments } = useScroll({
     initialData: searchData,
     searchQuery,
   });
+
+  if (!searchData || searchData.documents.length === 0) {
+    return null;
+  }
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -47,24 +48,17 @@ export default function BookList({ searchData }: SearchResultsContainerProps) {
         dataLength={documents.length}
         next={loadMoreDocuments}
         hasMore={hasMore}
-        loader={
-          <div className="flex justify-center py-8">
-            <div className="text-text-secondary">로딩 중...</div>
-          </div>
-        }
-        endMessage={
-          <div className="flex justify-center py-8">
-            <div className="text-text-secondary">모든 결과를 불러왔습니다.</div>
-          </div>
-        }
+        loader={<Loader />}
       >
         <div className="space-y-4">
           {documents.map((book, index) => {
             const isExpanded = expandedIndex === index;
             return (
-              <div className="border-border-gray border-b bg-white p-4">
+              <div
+                key={`${book.isbn}-${index}`}
+                className="border-border-gray border-b bg-white p-4"
+              >
                 <BookItem
-                  key={`${book.isbn}-${index}`}
                   book={book}
                   isExpanded={isExpanded}
                   onToggle={() => toggleExpand(index)}

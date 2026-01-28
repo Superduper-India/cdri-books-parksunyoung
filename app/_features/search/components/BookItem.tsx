@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Description from "@/app/_components/ui/Description";
 import Price from "@/app/_components/ui/Price";
-import PurchaseButton from "@/app/_components/ui/PurchaseButton";
 import Thumbnail from "@/app/_components/ui/Thumbnail";
 import Title from "@/app/_components/ui/Title";
+import PurchaseButton from "@/app/_features/search/components/PurchaseButton";
+import ToggleButton from "@/app/_features/search/components/ToggleButton";
 import type { SearchDocument } from "@/app/_features/search/types/Search";
 import { BUTTON_CLASSNAME } from "@/lib/constant";
 
@@ -13,31 +13,6 @@ interface BookItemProps {
   isExpanded: boolean;
   book: SearchDocument;
   onToggle: () => void;
-}
-
-interface ToggleButtonProps {
-  isExpanded: boolean;
-  onToggle: () => void;
-}
-
-function ToggleButton({ isExpanded, onToggle }: ToggleButtonProps) {
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      className={`bg-bg-gray text-text-secondary ${BUTTON_CLASSNAME}`}
-    >
-      <div className="flex justify-center gap-1">
-        <span>상세보기</span>
-        <Image
-          src={isExpanded ? "/arrow-up.svg" : "/arrow-down.svg"}
-          alt={isExpanded ? "접기" : "펼치기"}
-          width={14}
-          height={14}
-        />
-      </div>
-    </button>
-  );
 }
 
 export default function BookItem({

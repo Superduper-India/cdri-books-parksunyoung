@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import Header from "@/app/_components/ui/Header";
+import Header from "@/app/_components/layout/Header";
+import Empty from "@/app/_components/ui/Empty";
+import Summary from "@/app/_components/ui/Summary";
 import { searchBookApi } from "@/app/_features/search/api/kakaoSearch.api";
 import BookList from "@/app/_features/search/components/BookList";
-import Empty from "@/app/_features/search/components/Empty";
 import SearchInput from "@/app/_features/search/components/SearchInput";
-import SearchResultsSummary from "@/app/_features/search/components/SearchResultsSummary";
 
 interface SearchContainerProps {
   searchQuery?: string;
@@ -36,7 +36,7 @@ export default async function SearchContainer({
         </Suspense>
         {searchQuery && (
           <>
-            <SearchResultsSummary totalCount={totalCount} />
+            <Summary totalCount={totalCount} />
             {totalCount > 0 && <BookList searchData={searchData} />}
             {totalCount === 0 && <Empty />}
           </>
