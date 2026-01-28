@@ -1,27 +1,22 @@
 import Link from "next/link";
 
 export default function Header() {
-    return (
-        <header className="w-full bg-white">
-            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-text-primary">
-                    CERTICOS BOOKS
-                </h1>
-                <nav className="flex gap-6">
-                    <Link
-                        href="/"
-                        className="text-text-primary font-medium border-b-1 border-primary pb-1 text-xl"
-                    >
-                        도서 검색
-                    </Link>
-                    <Link
-                        href="/liked"
-                        className="text-text-primary font-medium text-xl"
-                    >
-                        내가 찜한 책
-                    </Link>
-                </nav>
-            </div>
-        </header>
-    );
+  return (
+    <header className="w-full bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <h1 className="font-bold text-2xl text-text-primary">CERTICOS BOOKS</h1>
+        <nav className="flex gap-6">
+          <Link
+            href="/"
+            className="border-primary border-b pb-1 font-medium text-text-primary text-xl"
+          >
+            도서 검색
+          </Link>
+          <Link href="/liked" className="font-medium text-text-primary text-xl">
+            내가 찜한 책
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
 }
