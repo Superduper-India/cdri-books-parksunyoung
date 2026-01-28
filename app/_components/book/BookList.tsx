@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "@/app/_components/layout/Loader";
-import BookItem from "@/app/_features/search/components/BookItem";
-import { useScroll } from "@/app/_features/search/hooks/useScroll";
-import type { KakaoSearchResponse } from "@/app/_features/search/types/Search";
+import BookItem from "@/app/_components/book/BookItem";
+import Loader from "@/app/_components/ui/Loader";
+import { useScroll } from "@/app/_hooks/useScroll";
+import type { KakaoSearchResponse } from "@/app/_types/book";
 
 // React 19 호환성을 위한 타입 단언
 const InfiniteScrollComponent =

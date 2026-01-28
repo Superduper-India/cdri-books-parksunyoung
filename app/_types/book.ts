@@ -1,7 +1,7 @@
-// Kakao 검색 API 응답 타입 정의
+// 공통 책 관련 타입 정의
 
-// 검색 결과 문서 타입 (책 검색)
-export interface SearchDocument {
+// 책 문서 타입 (검색 결과 및 찜한 책에서 공통 사용)
+export interface BookDocument {
   authors: string[];
   contents: string;
   datetime: string;
@@ -26,5 +26,5 @@ export interface SearchMeta {
 // Kakao 검색 API 응답 타입
 export interface KakaoSearchResponse {
   meta: SearchMeta;
-  documents: SearchDocument[];
+  documents: BookDocument[];
 }

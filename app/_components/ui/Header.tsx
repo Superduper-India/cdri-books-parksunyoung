@@ -1,6 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const SELECTED_CLASSNAME = "border-primary border-b pb-1";
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="w-full bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -8,11 +15,18 @@ export default function Header() {
         <nav className="flex gap-6">
           <Link
             href="/"
-            className="border-primary border-b pb-1 font-medium text-text-primary text-xl"
+            className={`font-medium text-text-primary text-xl ${
+              pathname === "/" ? SELECTED_CLASSNAME : ""
+            }`}
           >
             도서 검색
           </Link>
-          <Link href="/liked" className="font-medium text-text-primary text-xl">
+          <Link
+            href="/liked"
+            className={`font-medium text-text-primary text-xl ${
+              pathname === "/liked" ? SELECTED_CLASSNAME : ""
+            }`}
+          >
             내가 찜한 책
           </Link>
         </nav>

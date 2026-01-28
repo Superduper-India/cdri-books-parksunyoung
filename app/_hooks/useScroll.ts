@@ -1,11 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { searchBookApi } from "@/app/_features/search/api/kakaoSearch.api";
-import type {
-  KakaoSearchResponse,
-  SearchDocument,
-} from "@/app/_features/search/types/Search";
+import { searchBookApi } from "@/app/_api/search";
+import type { BookDocument, KakaoSearchResponse } from "@/app/_types/book";
 
 interface UseScrollProps {
   initialData: KakaoSearchResponse | null;
@@ -13,7 +10,7 @@ interface UseScrollProps {
 }
 
 export function useScroll({ initialData, searchQuery }: UseScrollProps) {
-  const [documents, setDocuments] = useState<SearchDocument[]>([]);
+  const [documents, setDocuments] = useState<BookDocument[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);

@@ -1,8 +1,8 @@
-import type { SearchDocument } from "@/app/_features/search/types/Search";
+import type { BookDocument } from "@/app/_types/book";
 import { formatPrice } from "@/lib/formatter";
 
 interface PriceProps {
-  book: SearchDocument;
+  book: BookDocument;
   isDescription?: boolean;
 }
 

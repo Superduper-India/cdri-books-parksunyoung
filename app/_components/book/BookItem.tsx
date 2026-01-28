@@ -1,17 +1,17 @@
 "use client";
 
-import Description from "@/app/_components/ui/Description";
-import Price from "@/app/_components/ui/Price";
-import Thumbnail from "@/app/_components/ui/Thumbnail";
-import Title from "@/app/_components/ui/Title";
-import PurchaseButton from "@/app/_features/search/components/PurchaseButton";
-import ToggleButton from "@/app/_features/search/components/ToggleButton";
-import type { SearchDocument } from "@/app/_features/search/types/Search";
+import PurchaseButton from "@/app/_components/book/buttons/PurchaseButton";
+import ToggleButton from "@/app/_components/book/buttons/ToggleButton";
+import Description from "@/app/_components/book/Description";
+import Price from "@/app/_components/book/Price";
+import Thumbnail from "@/app/_components/book/Thumbnail";
+import Title from "@/app/_components/book/Title";
+import type { BookDocument } from "@/app/_types/book";
 import { BUTTON_CLASSNAME } from "@/lib/constant";
 
 interface BookItemProps {
   isExpanded: boolean;
-  book: SearchDocument;
+  book: BookDocument;
   onToggle: () => void;
 }
 

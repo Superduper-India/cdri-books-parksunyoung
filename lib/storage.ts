@@ -1,4 +1,4 @@
-const FAVORITE_STORAGE_KEY = "idus_favorites";
+const FAVORITE_STORAGE_KEY = "books_favorites";
 
 export function saveFavoritesToStorage(favorites: Set<string>): void {
   const favoritesArray = Array.from(favorites);
