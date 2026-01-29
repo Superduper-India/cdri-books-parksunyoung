@@ -39,7 +39,7 @@ export function saveSearchHistory(query: string): void {
 
   localStorage.setItem(
     SEARCH_HISTORY_STORAGE_KEY,
-    JSON.stringify(limitedHistory)
+    JSON.stringify(limitedHistory),
   );
 }
 
@@ -59,4 +59,9 @@ function getSearchHistoryItems(): SearchHistoryItem[] {
     }
   }
   return [];
+}
+
+export function removeSearchFromHistory(query: string): void {
+  const history = getSearchHistoryItems().filter(item => item.query !== query);
+  localStorage.setItem(SEARCH_HISTORY_STORAGE_KEY, JSON.stringify(history));
 }
