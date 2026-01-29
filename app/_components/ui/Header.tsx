@@ -22,9 +22,9 @@ export default function Header() {
             도서 검색
           </Link>
           <Link
-            href="/liked"
+            href="/favorite"
             className={`font-medium text-text-primary text-xl ${
-              pathname === "/liked" ? SELECTED_CLASSNAME : ""
+              pathname === "/favorite" ? SELECTED_CLASSNAME : ""
             }`}
           >
             내가 찜한 책

@@ -7,22 +7,22 @@ import Summary from "@/app/_components/ui/Summary";
 import type { BookDocument } from "@/app/_types/book";
 import { getFavoritesFromStorage } from "@/lib/storage";
 
-export default function LikedPage() {
-  const [likedBooks, setLikedBooks] = useState<BookDocument[]>([]);
+export default function FavoritePage() {
+  const [favoriteBooks, setFavoriteBooks] = useState<BookDocument[]>([]);
 
   useEffect(() => {
     const favorites = getFavoritesFromStorage();
 
     const bookData: BookDocument[] = [];
 
-    setLikedBooks(bookData);
+    setFavoriteBooks(bookData);
   }, []);
 
   return (
     <PageLayout title="내가 찜한 책">
-      {likedBooks.length > 0 ? (
+      {favoriteBooks.length > 0 ? (
         <>
-          <Summary message="찜한 책" totalCount={likedBooks.length} />
+          <Summary message="찜한 책" totalCount={favoriteBooks.length} />
           {/* TODO: 찜한 책 목록 렌더링 */}
         </>
       ) : (

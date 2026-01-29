@@ -2,6 +2,7 @@
 
 import PurchaseButton from "@/app/_components/book/buttons/PurchaseButton";
 import ToggleButton from "@/app/_components/book/buttons/ToggleButton";
+import FavoriteButton from "@/app/_components/book/buttons/FavoriteButton";
 import Description from "@/app/_components/book/Description";
 import Price from "@/app/_components/book/Price";
 import Thumbnail from "@/app/_components/book/Thumbnail";
@@ -25,7 +26,15 @@ export default function BookItem({
     return (
       <div className="flex justify-between">
         <div className="flex gap-8">
-          <Thumbnail book={book} width={210} height={280} />
+          <div className="relative">
+            <Thumbnail book={book} width={210} height={280} />
+            <FavoriteButton
+              book={book}
+              width={24}
+              height={24}
+              className="top-2 right-2"
+            />
+          </div>
 
           <div className="flex w-90 flex-auto flex-col">
             <Title book={book} />
@@ -56,8 +65,9 @@ export default function BookItem({
   // 책 리스트 아이템 (토글 접힘)
   return (
     <div className="flex flex-1 justify-between">
-      <div className="mx-12">
+      <div className="relative mx-12">
         <Thumbnail book={book} />
+        <FavoriteButton book={book} />
       </div>
       <Title book={book} />
 
