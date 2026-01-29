@@ -2,14 +2,15 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { searchBookApi } from "@/app/_api/search";
-import type { BookDocument, KakaoSearchResponse } from "@/app/_types/book";
+import type { BookDocument } from "@/app/_types/book";
 
 interface UseScrollProps {
-  initialData: KakaoSearchResponse | null;
+  initialData: BookDocument[];
   searchQuery: string;
+  isEnd: boolean;
 }
 
-export function useScroll({ initialData, searchQuery }: UseScrollProps) {
+export function useScroll({ initialData, searchQuery, isEnd }: UseScrollProps) {
   const [documents, setDocuments] = useState<BookDocument[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,8 +19,8 @@ export function useScroll({ initialData, searchQuery }: UseScrollProps) {
   // 초기 데이터 설정
   useEffect(() => {
     if (initialData) {
-      setDocuments(initialData.documents);
-      setHasMore(!initialData.meta.is_end);
+      setDocuments(initialData);
+      setHasMore(!isEnd);
       setCurrentPage(1);
     }
   }, [initialData]);

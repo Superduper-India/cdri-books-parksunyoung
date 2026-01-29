@@ -1,8 +1,8 @@
 "use client";
 
+import FavoriteButton from "@/app/_components/book/buttons/FavoriteButton";
 import PurchaseButton from "@/app/_components/book/buttons/PurchaseButton";
 import ToggleButton from "@/app/_components/book/buttons/ToggleButton";
-import FavoriteButton from "@/app/_components/book/buttons/FavoriteButton";
 import Description from "@/app/_components/book/Description";
 import Price from "@/app/_components/book/Price";
 import Thumbnail from "@/app/_components/book/Thumbnail";

@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import BookItem from "@/app/_components/book/BookItem";
 import Loader from "@/app/_components/ui/Loader";
 import { useScroll } from "@/app/_hooks/useScroll";
-import type { KakaoSearchResponse } from "@/app/_types/book";
+import type { BookDocument } from "@/app/_types/book";
 
 // React 19 호환성을 위한 타입 단언
 const InfiniteScrollComponent =
@@ -20,21 +20,23 @@ const InfiniteScrollComponent =
     children: React.ReactNode;
   }>;
 
-interface SearchResultsContainerProps {
-  searchData: KakaoSearchResponse | null;
+interface BookListProps {
+  books: BookDocument[];
+  isEnd: boolean;
 }
 
-export default function BookList({ searchData }: SearchResultsContainerProps) {
+export default function BookList({ books, isEnd }: BookListProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
 
   const { documents, hasMore, loadMoreDocuments } = useScroll({
-    initialData: searchData,
+    initialData: books,
     searchQuery,
+    isEnd,
   });
 
-  if (!searchData || searchData.documents.length === 0) {
+  if (!books || books.length === 0) {
     return null;
   }
 

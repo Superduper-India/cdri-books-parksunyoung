@@ -35,7 +35,12 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
       {searchQuery && (
         <>
           <Summary totalCount={totalCount} />
-          {totalCount > 0 && <BookList searchData={searchData} />}
+          {totalCount > 0 && (
+            <BookList
+              books={searchData?.documents || []}
+              isEnd={searchData?.meta?.is_end || false}
+            />
+          )}
           {totalCount === 0 && <Empty />}
         </>
       )}

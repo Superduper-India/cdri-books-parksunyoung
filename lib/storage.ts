@@ -1,15 +1,16 @@
+import type { BookDocument } from "@/app/_types/book";
+
 const FAVORITE_STORAGE_KEY = "books_favorites";
 
-export function saveFavoritesToStorage(favorites: Set<string>): void {
-  const favoritesArray = Array.from(favorites);
-  localStorage.setItem(FAVORITE_STORAGE_KEY, JSON.stringify(favoritesArray));
+export function saveFavoritesToStorage(favorites: BookDocument[]): void {
+  localStorage.setItem(FAVORITE_STORAGE_KEY, JSON.stringify(favorites));
 }
 
-export function getFavoritesFromStorage(): Set<string> {
+export function getFavoritesFromStorage(): BookDocument[] {
   const stored = localStorage.getItem(FAVORITE_STORAGE_KEY);
   if (stored) {
-    const favorites = JSON.parse(stored) as string[];
-    return new Set(favorites);
+    const favorites = JSON.parse(stored) as BookDocument[];
+    return favorites;
   }
-  return new Set();
+  return [];
 }

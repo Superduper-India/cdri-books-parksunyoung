@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import BookList from "@/app/_components/book/BookList";
 import PageLayout from "@/app/_components/layout/PageLayout";
 import Empty from "@/app/_components/ui/Empty";
 import Summary from "@/app/_components/ui/Summary";
@@ -12,10 +13,7 @@ export default function FavoritePage() {
 
   useEffect(() => {
     const favorites = getFavoritesFromStorage();
-
-    const bookData: BookDocument[] = [];
-
-    setFavoriteBooks(bookData);
+    setFavoriteBooks(favorites);
   }, []);
 
   return (
@@ -23,7 +21,7 @@ export default function FavoritePage() {
       {favoriteBooks.length > 0 ? (
         <>
           <Summary message="찜한 책" totalCount={favoriteBooks.length} />
-          {/* TODO: 찜한 책 목록 렌더링 */}
+          <BookList books={favoriteBooks} isEnd={true} />
         </>
       ) : (
         <Empty message="찜한 책이 없습니다." />

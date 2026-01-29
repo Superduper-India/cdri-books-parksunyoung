@@ -28,7 +28,7 @@ export default function FavoriteButton({
       className={`absolute z-10 cursor-pointer transition-opacity hover:opacity-80 ${className}`}
       onClick={e => {
         e.stopPropagation();
-        toggleFavorite(isbn);
+        toggleFavorite(book);
       }}
       aria-label={favorite ? "찜하기 해제" : "찜하기"}
     >
