@@ -22,10 +22,10 @@ const InfiniteScrollComponent =
 
 interface BookListProps {
   books: BookDocument[];
-  isEnd: boolean;
+  isEnd?: boolean;
 }
 
-export default function BookList({ books, isEnd }: BookListProps) {
+export default function BookList({ books, isEnd = false }: BookListProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
@@ -33,7 +33,7 @@ export default function BookList({ books, isEnd }: BookListProps) {
   const { documents, hasMore, loadMoreDocuments } = useScroll({
     initialData: books,
     searchQuery,
-    isEnd,
+    isEnd: isEnd,
   });
 
   if (!books || books.length === 0) {
