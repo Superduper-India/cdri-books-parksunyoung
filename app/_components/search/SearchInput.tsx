@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { type FormEvent, useState } from "react";
+import { saveSearchHistory } from "@/lib/storage";
 
 export default function SearchInput() {
   const router = useRouter();
@@ -12,7 +13,9 @@ export default function SearchInput() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/?q=${encodeURIComponent(query.trim())}`);
+      const trimmedQuery = query.trim();
+      saveSearchHistory(trimmedQuery);
+      router.push(`/?q=${encodeURIComponent(trimmedQuery)}`);
     }
   };
 
