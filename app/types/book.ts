@@ -34,3 +34,5 @@ export interface SearchHistoryItem {
   query: string;
   timestamp: number;
 }
+
+export type SearchTarget = "title" | "person" | "publisher";

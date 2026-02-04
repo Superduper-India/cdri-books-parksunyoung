@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
-
-export type SearchTarget = "title" | "person" | "publisher";
+import type { SearchTarget } from "@/app/types/book";
 
 interface DetailSearchModalProps {
   isOpen: boolean;

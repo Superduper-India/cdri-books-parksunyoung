@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useRef } from "react";
 import DetailSearchForm from "@/app/container/search/DetailSearchForm";
 
-export type SearchTarget = "title" | "person" | "publisher";
-
 interface DetailSearchModalProps {
   isOpen: boolean;
   onClose: () => void;

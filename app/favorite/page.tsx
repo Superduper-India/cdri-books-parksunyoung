@@ -10,7 +10,7 @@ import type { BookDocument } from "@/app/types/book";
 export default function FavoritePage() {
   const [favoriteBooks, setFavoriteBooks] = useState<BookDocument[]>([]);
 
-  const {favorites} = useFavorite();
+  const { favorites } = useFavorite();
 
   useEffect(() => {
     setFavoriteBooks(favorites);

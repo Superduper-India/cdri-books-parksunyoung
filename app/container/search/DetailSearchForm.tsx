@@ -3,13 +3,12 @@
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import SearchOption from "@/app/components/search/SearchOption";
+import type { SearchTarget } from "@/app/types/book";
 import {
   BUTTON_CLASSNAME,
   INPUT_CLASSNAME,
   SELECTED_CLASSNAME,
 } from "@/lib/constant";
-
-export type SearchTarget = "title" | "person" | "publisher";
 
 interface DetailSearchModalProps {
   isOpen: boolean;
