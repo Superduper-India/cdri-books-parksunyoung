@@ -5,16 +5,16 @@ import PageLayout from "@/app/components/layout/PageLayout";
 import Empty from "@/app/components/ui/Empty";
 import Summary from "@/app/components/ui/Summary";
 import BookList from "@/app/container/book/BookList";
+import { useFavorite } from "@/app/hooks/useFavorite";
 import type { BookDocument } from "@/app/types/book";
-import { getFavoritesFromStorage } from "@/lib/storage";
-
 export default function FavoritePage() {
   const [favoriteBooks, setFavoriteBooks] = useState<BookDocument[]>([]);
 
+  const {favorites} = useFavorite();
+
   useEffect(() => {
-    const favorites = getFavoritesFromStorage();
     setFavoriteBooks(favorites);
-  }, []);
+  }, [favorites]);
 
   return (
     <PageLayout title="내가 찜한 책">
