@@ -9,8 +9,7 @@ export const searchBookApi = {
     page?: number,
     size?: number,
   ): Promise<KakaoSearchResponse> => {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_KAKAO_SEARCH_API_URL || "https://dapi.kakao.com";
+    const baseUrl = process.env.NEXT_PUBLIC_KAKAO_SEARCH_API_URL;
     const apiKey = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY;
 
     if (!apiKey) {
