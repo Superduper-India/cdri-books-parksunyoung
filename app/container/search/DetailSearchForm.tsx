@@ -10,7 +10,7 @@ import {
   SELECTED_CLASSNAME,
 } from "@/lib/constant";
 
-interface DetailSearchModalProps {
+interface DetailSearchFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -18,7 +18,7 @@ interface DetailSearchModalProps {
 export default function DetailSearchForm({
   isOpen,
   onClose,
-}: DetailSearchModalProps) {
+}: DetailSearchFormProps) {
   const router = useRouter();
   const [selectedTarget, setSelectedTarget] = useState<SearchTarget>("title");
   const [searchQuery, setSearchQuery] = useState("");
