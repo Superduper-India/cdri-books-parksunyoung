@@ -128,7 +128,7 @@ export default function DetailSearchModal({
               <button
                 type="button"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex h-10 min-w-[100px] items-center justify-between border-border-gray border-b-1 bg-white px-3 font-bold text-sm text-text-primary focus:outline-none"
+                className="flex h-10 min-w-[100px] items-center justify-between border-border-gray border-b bg-white px-3 font-bold text-sm text-text-primary focus:outline-none"
               >
                 <span>{selectedOption?.label}</span>
                 <Image
@@ -168,7 +168,7 @@ export default function DetailSearchModal({
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="검색어 입력"
-                className="h-10 w-full border-primary border-b-1 bg-transparent px-2 text-sm text-text-primary placeholder:text-text-subtitle focus:outline-none"
+                className="h-10 w-full border-primary border-b bg-transparent px-2 text-sm text-text-primary placeholder:text-text-subtitle focus:outline-none"
               />
             </div>
           </div>

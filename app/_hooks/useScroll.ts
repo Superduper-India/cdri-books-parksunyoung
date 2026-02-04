@@ -23,7 +23,7 @@ export function useScroll({ initialData, searchQuery, isEnd }: UseScrollProps) {
       setHasMore(!isEnd);
       setCurrentPage(1);
     }
-  }, [initialData]);
+  }, [initialData, isEnd]);
 
   const loadMoreDocuments = useCallback(async () => {
     if (isLoading || !hasMore || !searchQuery) return;

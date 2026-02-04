@@ -7,7 +7,6 @@ interface ThumbnailProps {
   height?: number;
 }
 
-// @toDo 좋아요 버튼 추가
 export default function Thumbnail({
   book,
   width = 48,
