@@ -32,7 +32,7 @@ export default function SearchHistory({
     removeSearchFromHistory(query);
     setSearchHistory(prev => {
       const newHistory = prev.filter(item => item !== query);
-      if(newHistory.length === 0) onClose();
+      if (newHistory.length === 0) onClose();
       return newHistory;
     });
   };

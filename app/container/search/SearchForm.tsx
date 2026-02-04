@@ -5,6 +5,7 @@ import { type FormEvent, useEffect, useRef, useState } from "react";
 import DetailSearchModal from "@/app/components/search/DetailSearchModal";
 import SearchHistory from "@/app/components/search/SearchHistory";
 import SearchInputField from "@/app/components/search/SearchInputField";
+import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { getSearchHistory, saveSearchHistory } from "@/lib/storage";
 
 export default function SearchForm() {
@@ -20,6 +21,8 @@ export default function SearchForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const detailSearchButtonRef = useRef<HTMLButtonElement>(null);
 
+  useClickOutside(formRef, () => setShowHistory(false), showHistory);
+
   // URL 파라미터 변경 시 query 업데이트
   useEffect(() => {
     if (hasTarget) {
@@ -28,26 +31,6 @@ export default function SearchForm() {
       setQuery(searchQuery);
     }
   }, [hasTarget, searchQuery]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        formRef.current &&
-        !formRef.current.contains(event.target as Node) &&
-        showHistory
-      ) {
-        setShowHistory(false);
-      }
-    };
-
-    if (showHistory) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showHistory]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

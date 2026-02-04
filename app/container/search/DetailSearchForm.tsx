@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { type FormEvent, useState } from "react";
 import SearchOption from "@/app/components/search/SearchOption";
 import {
   BUTTON_CLASSNAME,
@@ -27,50 +27,6 @@ export default function DetailSearchModal({
   const router = useRouter();
   const [selectedTarget, setSelectedTarget] = useState<SearchTarget>("title");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        onClose();
-        setIsDropdownOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, onClose, buttonRef]);
-
-  useEffect(() => {
-    const handleDropdownClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleDropdownClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleDropdownClickOutside);
-    };
-  }, [isDropdownOpen]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -80,7 +36,6 @@ export default function DetailSearchModal({
         `/?target=${selectedTarget}&q=${encodeURIComponent(trimmedQuery)}`,
       );
       setSearchQuery("");
-      setIsDropdownOpen(false);
       onClose();
     }
   };
@@ -93,7 +48,6 @@ export default function DetailSearchModal({
         {/* 검색 조건 드롭다운 */}
         <SearchOption
           isOpen={isOpen}
-          onClose={onClose}
           buttonRef={buttonRef}
           selectedTarget={selectedTarget}
           setSelectedTarget={setSelectedTarget}
