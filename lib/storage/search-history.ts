@@ -1,18 +1,17 @@
-import type { BookDocument, SearchHistoryItem } from "@/app/types/book";
+import type { SearchHistoryItem } from "@/app/types/book";
 
-const FAVORITE_STORAGE_KEY = "books_favorites";
 const SEARCH_HISTORY_STORAGE_KEY = "books_search_history";
 const MAX_SEARCH_HISTORY = 8;
 
-export function saveFavoritesToStorage(favorites: BookDocument[]): void {
-  localStorage.setItem(FAVORITE_STORAGE_KEY, JSON.stringify(favorites));
-}
-
-export function getFavoritesFromStorage(): BookDocument[] {
-  const stored = localStorage.getItem(FAVORITE_STORAGE_KEY);
+function getSearchHistoryItems(): SearchHistoryItem[] {
+  const stored = localStorage.getItem(SEARCH_HISTORY_STORAGE_KEY);
   if (stored) {
-    const favorites = JSON.parse(stored) as BookDocument[];
-    return favorites;
+    try {
+      const history = JSON.parse(stored) as SearchHistoryItem[];
+      return history;
+    } catch {
+      return [];
+    }
   }
   return [];
 }
@@ -46,19 +45,6 @@ export function saveSearchHistory(query: string): void {
 export function getSearchHistory(): string[] {
   const history = getSearchHistoryItems();
   return history.map(item => item.query);
-}
-
-function getSearchHistoryItems(): SearchHistoryItem[] {
-  const stored = localStorage.getItem(SEARCH_HISTORY_STORAGE_KEY);
-  if (stored) {
-    try {
-      const history = JSON.parse(stored) as SearchHistoryItem[];
-      return history;
-    } catch {
-      return [];
-    }
-  }
-  return [];
 }
 
 export function removeSearchFromHistory(query: string): void {
