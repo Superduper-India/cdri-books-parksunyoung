@@ -72,11 +72,13 @@ export default function SearchInput() {
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-2">
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="flex-1 rounded-2xl bg-bg-gray"
+        className={`relative flex-1 rounded-t-2xl bg-bg-gray ${
+          showHistory ? "rounded-t-2xl" : "rounded-2xl"
+        }`}
       >
         <div className="relative">
           <div className="-translate-y-1/2 absolute top-1/2 left-4">
@@ -103,7 +105,7 @@ export default function SearchInput() {
           ref={detailSearchButtonRef}
           type="button"
           onClick={() => setShowDetailSearch(!showDetailSearch)}
-          className="h-[36px] rounded-lg border border-border-gray bg-white px-4 font-medium text-sm text-text-subtitle transition-colors"
+          className="h-[36px] cursor-pointer rounded-lg border border-border-gray bg-white px-4 font-medium text-sm text-text-subtitle transition-colors"
         >
           상세검색
         </button>

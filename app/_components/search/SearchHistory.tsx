@@ -36,15 +36,15 @@ export default function SearchHistory({
 
   return (
     <div
-      className={`overflow-hidden pr-6 pb-7 transition-all duration-300 ease-in-out ${
-        isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+      className={`absolute top-full right-0 left-0 z-20 max-h-96 overflow-y-auto rounded-b-2xl bg-bg-gray py-2 transition-all duration-300 ease-in-out ${
+        isOpen ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
-      <ul className="space-y-1">
-        {searchHistory.map((query, index) => (
+      <ul className="space-y-1 pr-4 pl-10">
+        {searchHistory.map(query => (
           <li
-            key={`${query}-${index}`}
-            className="flex cursor-pointer items-center justify-between rounded-md px-2 py-1.5 pl-12 transition-colors"
+            key={query}
+            className="flex items-center justify-between rounded-md px-2 py-1.5 transition-colors"
             onClick={() => handleSearchClick(query)}
           >
             <span className="flex-1 text-sm text-text-primary">{query}</span>

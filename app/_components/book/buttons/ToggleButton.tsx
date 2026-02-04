@@ -16,7 +16,7 @@ export default function ToggleButton({
     <button
       type="button"
       onClick={onToggle}
-      className={`bg-bg-gray text-text-secondary ${BUTTON_CLASSNAME}`}
+      className={`cursor-pointer bg-bg-gray text-text-secondary ${BUTTON_CLASSNAME}`}
     >
       <div className="flex justify-center gap-1">
         <span>상세보기</span>
