@@ -86,7 +86,6 @@ export default function SearchForm() {
         <DetailSearchModal
           isOpen={showDetailSearch}
           onClose={() => setShowDetailSearch(false)}
-          buttonRef={detailSearchButtonRef}
         />
       </div>
     </div>

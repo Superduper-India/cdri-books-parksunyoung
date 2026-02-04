@@ -14,15 +14,11 @@ export type SearchTarget = "title" | "person" | "publisher";
 interface DetailSearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  buttonRef:
-    | React.RefObject<HTMLButtonElement | null>
-    | React.RefObject<HTMLButtonElement>;
 }
 
-export default function DetailSearchModal({
+export default function DetailSearchForm({
   isOpen,
   onClose,
-  buttonRef,
 }: DetailSearchModalProps) {
   const router = useRouter();
   const [selectedTarget, setSelectedTarget] = useState<SearchTarget>("title");
@@ -48,7 +44,6 @@ export default function DetailSearchModal({
         {/* 검색 조건 드롭다운 */}
         <SearchOption
           isOpen={isOpen}
-          buttonRef={buttonRef}
           selectedTarget={selectedTarget}
           setSelectedTarget={setSelectedTarget}
         />

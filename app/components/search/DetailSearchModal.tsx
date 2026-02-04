@@ -9,15 +9,11 @@ export type SearchTarget = "title" | "person" | "publisher";
 interface DetailSearchModalProps {
   isOpen: boolean;
   onClose: () => void;
-  buttonRef:
-    | React.RefObject<HTMLButtonElement | null>
-    | React.RefObject<HTMLButtonElement>;
 }
 
 export default function DetailSearchModal({
   isOpen,
   onClose,
-  buttonRef,
 }: DetailSearchModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -40,11 +36,7 @@ export default function DetailSearchModal({
         </div>
 
         {/* 검색 조건 및 입력 필드 */}
-        <DetailSearchForm
-          isOpen={isOpen}
-          onClose={onClose}
-          buttonRef={buttonRef}
-        />
+        <DetailSearchForm isOpen={isOpen} onClose={onClose} />
       </div>
     </div>
   );

@@ -8,9 +8,6 @@ export type SearchTarget = "title" | "person" | "publisher";
 
 interface DetailSearchModalProps {
   isOpen: boolean;
-  buttonRef:
-    | React.RefObject<HTMLButtonElement | null>
-    | React.RefObject<HTMLButtonElement>;
   selectedTarget: SearchTarget;
   setSelectedTarget: (target: SearchTarget) => void;
 }
@@ -23,7 +20,6 @@ const searchOptions: { value: SearchTarget; label: string }[] = [
 
 export default function SearchOption({
   isOpen,
-  buttonRef,
   selectedTarget,
   setSelectedTarget,
 }: DetailSearchModalProps) {
