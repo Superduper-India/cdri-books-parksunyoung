@@ -20,8 +20,6 @@ export default function SearchForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const detailSearchButtonRef = useRef<HTMLButtonElement>(null);
 
-  console.log("showHistory", showHistory);
-
   // URL 파라미터 변경 시 query 업데이트
   useEffect(() => {
     if (hasTarget) {
