@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Header from "@/app/_components/ui/Header";
+import Header from "@/app/components/ui/Header";
 
 interface PageLayoutProps {
   title: string;

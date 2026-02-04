@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { BookDocument } from "@/app/_types/book";
+import type { BookDocument } from "@/app/types/book";
 
 interface ThumbnailProps {
   book: BookDocument;

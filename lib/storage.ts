@@ -1,4 +1,4 @@
-import type { BookDocument, SearchHistoryItem } from "@/app/_types/book";
+import type { BookDocument, SearchHistoryItem } from "@/app/types/book";
 
 const FAVORITE_STORAGE_KEY = "books_favorites";
 const SEARCH_HISTORY_STORAGE_KEY = "books_search_history";

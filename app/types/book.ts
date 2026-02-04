@@ -28,6 +28,7 @@ export interface KakaoSearchResponse {
   meta: SearchMeta;
   documents: BookDocument[];
 }
+
 // 검색 기록 타입
 export interface SearchHistoryItem {
   query: string;

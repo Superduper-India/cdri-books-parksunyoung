@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { createContext, useCallback, useEffect, useState } from "react";
-import type { BookDocument } from "@/app/_types/book";
+import type { BookDocument } from "@/app/types/book";
 import { getFavoritesFromStorage, saveFavoritesToStorage } from "@/lib/storage";
 
 // Context 타입 정의

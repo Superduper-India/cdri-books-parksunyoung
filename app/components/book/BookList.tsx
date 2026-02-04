@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BookItem from "@/app/_components/book/BookItem";
-import Loader from "@/app/_components/ui/Loader";
-import { useScroll } from "@/app/_hooks/useScroll";
-import type { BookDocument } from "@/app/_types/book";
+import BookItem from "@/app/components/book/BookItem";
+import Loader from "@/app/components/ui/Loader";
+import { useScroll } from "@/app/hooks/useScroll";
+import type { BookDocument } from "@/app/types/book";
 
 // React 19 호환성을 위한 타입 단언
 const InfiniteScrollComponent =

@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
-import { FavoriteProvider } from "@/app/_contexts/FavoriteContext";
-import { ReactQueryProvider } from "@/app/_providers/ReactQueryProvider";
+import { FavoriteProvider } from "@/app/contexts/FavoriteContext";
+import { ReactQueryProvider } from "@/app/providers/ReactQueryProvider";
 import "./globals.css";
 
 export default function RootLayout({ children }: PropsWithChildren) {

@@ -1,5 +1,5 @@
 import ky from "ky";
-import type { KakaoSearchResponse } from "@/app/_types/book";
+import type { KakaoSearchResponse } from "@/app/types/book";
 
 export const searchBookApi = {
   fetchSearchWeb: async (

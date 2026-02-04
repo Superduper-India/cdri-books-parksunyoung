@@ -1,4 +1,4 @@
-import type { BookDocument } from "@/app/_types/book";
+import type { BookDocument } from "@/app/types/book";
 
 interface TitleProps {
   book: BookDocument;

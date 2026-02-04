@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { searchBookApi } from "@/app/_api/search";
-import BookList from "@/app/_components/book/BookList";
-import PageLayout from "@/app/_components/layout/PageLayout";
-import SearchInput from "@/app/_components/search/SearchInput";
-import Empty from "@/app/_components/ui/Empty";
-import Summary from "@/app/_components/ui/Summary";
+import { searchBookApi } from "@/app/api/search";
+import BookList from "@/app/components/book/BookList";
+import PageLayout from "@/app/components/layout/PageLayout";
+import SearchInput from "@/app/components/search/SearchInput";
+import Empty from "@/app/components/ui/Empty";
+import Summary from "@/app/components/ui/Summary";
 
 interface BooksPageProps {
   searchParams: Promise<{ q?: string; target?: string }>;

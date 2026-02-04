@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { searchBookApi } from "@/app/_api/search";
-import type { BookDocument } from "@/app/_types/book";
+import { searchBookApi } from "@/app/api/search";
+import type { BookDocument } from "@/app/types/book";
 
 interface UseScrollProps {
   initialData: BookDocument[];

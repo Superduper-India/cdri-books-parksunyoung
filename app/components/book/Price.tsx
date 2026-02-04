@@ -1,4 +1,4 @@
-import type { BookDocument } from "@/app/_types/book";
+import type { BookDocument } from "@/app/types/book";
 import { formatPrice } from "@/lib/formatter";
 
 interface PriceProps {

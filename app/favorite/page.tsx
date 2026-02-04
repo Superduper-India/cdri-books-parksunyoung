@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BookList from "@/app/_components/book/BookList";
-import PageLayout from "@/app/_components/layout/PageLayout";
-import Empty from "@/app/_components/ui/Empty";
-import Summary from "@/app/_components/ui/Summary";
-import type { BookDocument } from "@/app/_types/book";
+import BookList from "@/app/components/book/BookList";
+import PageLayout from "@/app/components/layout/PageLayout";
+import Empty from "@/app/components/ui/Empty";
+import Summary from "@/app/components/ui/Summary";
+import type { BookDocument } from "@/app/types/book";
 import { getFavoritesFromStorage } from "@/lib/storage";
 
 export default function FavoritePage() {

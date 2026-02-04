@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useFavorite } from "@/app/_hooks/useFavorite";
-import type { BookDocument } from "@/app/_types/book";
+import { useFavorite } from "@/app/hooks/useFavorite";
+import type { BookDocument } from "@/app/types/book";
 
 interface FavoriteButtonProps {
   book: BookDocument;
