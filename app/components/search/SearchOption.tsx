@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import DetailSearchForm from "@/app/container/search/DetailSearchForm";
 
 export type SearchTarget = "title" | "person" | "publisher";
 
@@ -12,12 +11,22 @@ interface DetailSearchModalProps {
   buttonRef:
     | React.RefObject<HTMLButtonElement | null>
     | React.RefObject<HTMLButtonElement>;
+  selectedTarget: SearchTarget;
+  setSelectedTarget: (target: SearchTarget) => void;
 }
 
-export default function DetailSearchModal({
+const searchOptions: { value: SearchTarget; label: string }[] = [
+  { value: "title", label: "제목" },
+  { value: "person", label: "저자명" },
+  { value: "publisher", label: "출판사" },
+];
+
+export default function SearchOption({
   isOpen,
   onClose,
   buttonRef,
+  selectedTarget,
+  setSelectedTarget,
 }: DetailSearchModalProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -64,31 +73,49 @@ export default function DetailSearchModal({
     };
   }, [isDropdownOpen]);
 
+  const handleOptionSelect = (target: SearchTarget) => {
+    setSelectedTarget(target);
+    setIsDropdownOpen(false);
+  };
+
+  const selectedOption = searchOptions.find(
+    option => option.value === selectedTarget,
+  );
+
   if (!isOpen) return null;
 
   return (
-    <div className="absolute top-full right-0 z-50 mt-2 w-[400px]">
-      <div ref={modalRef} className="rounded-lg bg-white px-6 py-9 shadow-lg">
-        {/* 헤더 - 닫기 버튼 */}
-        <div className="absolute top-4 right-4">
-          <button type="button" onClick={onClose}>
-            <Image
-              src="/delete.svg"
-              alt="삭제"
-              width={20}
-              height={20}
-              className="h-4 w-4"
-            />
-          </button>
-        </div>
-
-        {/* 검색 조건 및 입력 필드 */}
-        <DetailSearchForm
-          isOpen={isOpen}
-          onClose={onClose}
-          buttonRef={buttonRef}
+    <div className="relative shrink-0" ref={dropdownRef}>
+      <button
+        type="button"
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        className="flex h-10 min-w-[100px] items-center justify-between border-border-gray border-b bg-white px-2 font-bold text-sm text-text-primary"
+      >
+        <span>{selectedOption?.label}</span>
+        <Image
+          src="/arrow-down.svg"
+          alt="펼침"
+          width={16}
+          height={16}
+          className="h-4 w-4"
         />
-      </div>
+      </button>
+
+      {/* 드롭다운 메뉴 */}
+      {isDropdownOpen && (
+        <div className="absolute top-full left-0 z-10 mt-1 w-full bg-white shadow-md">
+          {searchOptions.map(option => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => handleOptionSelect(option.value)}
+              className="w-full cursor-pointer px-2 py-1 text-left font-medium text-sm text-text-subtitle"
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

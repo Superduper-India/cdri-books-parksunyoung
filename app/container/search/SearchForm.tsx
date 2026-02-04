@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { type FormEvent, useEffect, useRef, useState } from "react";
-import { saveSearchHistory } from "@/lib/storage";
-import DetailSearchModal from "./DetailSearchModal";
-import SearchHistory from "./SearchHistory";
+import DetailSearchModal from "@/app/components/search/DetailSearchModal";
+import SearchHistory from "@/app/components/search/SearchHistory";
+import SearchInputField from "@/app/components/search/SearchInputField";
+import { getSearchHistory, saveSearchHistory } from "@/lib/storage";
 
-export default function SearchInput() {
+export default function SearchForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const hasTarget = searchParams.get("target") !== null;
@@ -19,6 +19,8 @@ export default function SearchInput() {
   const [showDetailSearch, setShowDetailSearch] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const detailSearchButtonRef = useRef<HTMLButtonElement>(null);
+
+  console.log("showHistory", showHistory);
 
   // URL 파라미터 변경 시 query 업데이트
   useEffect(() => {
@@ -61,7 +63,9 @@ export default function SearchInput() {
   };
 
   const handleInputFocus = () => {
-    setShowHistory(true);
+    const history = getSearchHistory();
+
+    if (history.length > 0) setShowHistory(true);
   };
 
   const handleHistorySelect = (selectedQuery: string) => {
@@ -76,29 +80,18 @@ export default function SearchInput() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className={`relative flex-1 rounded-t-2xl bg-bg-gray ${
-          showHistory ? "rounded-t-2xl" : "rounded-2xl"
-        }`}
+        className={`relative flex-1 bg-bg-gray ${showHistory ? "rounded-t-4xl" : "rounded-4xl"}`}
       >
-        <div className="relative">
-          <div className="-translate-y-1/2 absolute top-1/2 left-4">
-            <Image
-              src="/search_Icon.svg"
-              alt="검색 아이콘"
-              width={30}
-              height={30}
-            />
-          </div>
-          <input
-            type="text"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            onFocus={handleInputFocus}
-            placeholder="검색어를 입력하세요"
-            className="w-full rounded-lg bg-gray py-3 pr-4 pl-12 text-sm text-text-primary placeholder:text-text-subtitle focus:border-transparent focus:outline-none"
-          />
-        </div>
-        <SearchHistory isOpen={showHistory} onSelect={handleHistorySelect} />
+        <SearchInputField
+          value={query}
+          onChange={setQuery}
+          onFocus={handleInputFocus}
+        />
+        <SearchHistory
+          isOpen={showHistory}
+          onSelect={handleHistorySelect}
+          onClose={() => setShowHistory(false)}
+        />
       </form>
       <div className="relative">
         <button

@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+
 import BookItem from "@/app/components/book/BookItem";
 import Loader from "@/app/components/ui/Loader";
 import { useScroll } from "@/app/hooks/useScroll";
@@ -52,11 +53,11 @@ export default function BookList({ books, isEnd = false }: BookListProps) {
         hasMore={hasMore}
         loader={<Loader />}
       >
-        <div className="space-y-4">
+        <ul className="space-y-4">
           {documents.map((book, index) => {
             const isExpanded = expandedIndex === index;
             return (
-              <div
+              <li
                 key={`${book.isbn}-${index}`}
                 className="border-border-gray border-b bg-white p-4"
               >
@@ -65,10 +66,10 @@ export default function BookList({ books, isEnd = false }: BookListProps) {
                   isExpanded={isExpanded}
                   onToggle={() => toggleExpand(index)}
                 />
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </InfiniteScrollComponent>
     </div>
   );

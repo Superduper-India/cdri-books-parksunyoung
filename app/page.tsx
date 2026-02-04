@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { searchBookApi } from "@/app/api/search";
-import BookList from "@/app/components/book/BookList";
 import PageLayout from "@/app/components/layout/PageLayout";
-import SearchInput from "@/app/components/search/SearchInput";
 import Empty from "@/app/components/ui/Empty";
 import Summary from "@/app/components/ui/Summary";
+import BookList from "@/app/container/book/BookList";
+import SearchForm from "@/app/container/search/SearchForm";
 
 interface BooksPageProps {
   searchParams: Promise<{ q?: string; target?: string }>;
@@ -37,7 +37,7 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
   return (
     <PageLayout title="도서 검색">
       <Suspense fallback={<div className="h-12" />}>
-        <SearchInput />
+        <SearchForm />
       </Suspense>
       {searchQuery && (
         <>

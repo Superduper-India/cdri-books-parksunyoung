@@ -7,18 +7,21 @@ import { getSearchHistory, removeSearchFromHistory } from "@/lib/storage";
 interface SearchHistoryProps {
   isOpen: boolean;
   onSelect: (query: string) => void;
+  onClose: () => void;
 }
 
 export default function SearchHistory({
   isOpen,
   onSelect,
+  onClose,
 }: SearchHistoryProps) {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   useEffect(() => {
-    const history = getSearchHistory();
-    setSearchHistory(history);
-  }, []);
+    if (isOpen) {
+      setSearchHistory(getSearchHistory());
+    }
+  }, [isOpen]);
 
   const handleSearchClick = (query: string) => {
     onSelect(query);
@@ -27,7 +30,11 @@ export default function SearchHistory({
   const handleDelete = (e: React.MouseEvent, query: string) => {
     e.stopPropagation();
     removeSearchFromHistory(query);
-    setSearchHistory(prev => prev.filter(item => item !== query));
+    setSearchHistory(prev => {
+      const newHistory = prev.filter(item => item !== query);
+      if(newHistory.length === 0) onClose();
+      return newHistory;
+    });
   };
 
   if (searchHistory.length === 0 || !isOpen) {
@@ -36,22 +43,23 @@ export default function SearchHistory({
 
   return (
     <div
-      className={`absolute top-full right-0 left-0 z-20 max-h-96 overflow-y-auto rounded-b-2xl bg-bg-gray py-2 transition-all duration-300 ease-in-out ${
-        isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+      className={`absolute top-full right-0 left-0 z-20 max-h-96 overflow-y-auto bg-bg-gray py-4 ${
+        isOpen ? "display-block rounded-b-4xl" : "display-none"
       }`}
     >
       <ul className="space-y-1 pr-4 pl-10">
         {searchHistory.map(query => (
           <li
             key={query}
-            className="flex items-center justify-between rounded-md px-2 py-1.5 transition-colors"
+            className="flex cursor-pointer items-center justify-between px-2 py-1.5"
             onClick={() => handleSearchClick(query)}
           >
-            <span className="flex-1 text-sm text-text-primary">{query}</span>
+            <span className="flex-1 font-medium text-sm text-text-subtitle">
+              {query}
+            </span>
             <button
               type="button"
               onClick={e => handleDelete(e, query)}
-              className="ml-2 flex h-5 w-5 items-center justify-center transition-opacity hover:opacity-70"
               aria-label={`${query} 검색 기록 삭제`}
             >
               <Image

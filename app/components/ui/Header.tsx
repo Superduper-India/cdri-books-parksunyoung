@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const SELECTED_CLASSNAME = "border-primary border-b pb-1";
+import { SELECTED_CLASSNAME } from "@/lib/constant";
 
 export default function Header() {
   const pathname = usePathname();

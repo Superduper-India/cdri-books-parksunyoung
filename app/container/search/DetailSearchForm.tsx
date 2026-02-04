@@ -1,8 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import DetailSearchForm from "@/app/container/search/DetailSearchForm";
+import { useRouter } from "next/navigation";
+import { type FormEvent, useEffect, useRef, useState } from "react";
+import SearchOption from "@/app/components/search/SearchOption";
+import {
+  BUTTON_CLASSNAME,
+  INPUT_CLASSNAME,
+  SELECTED_CLASSNAME,
+} from "@/lib/constant";
 
 export type SearchTarget = "title" | "person" | "publisher";
 
@@ -19,6 +24,9 @@ export default function DetailSearchModal({
   onClose,
   buttonRef,
 }: DetailSearchModalProps) {
+  const router = useRouter();
+  const [selectedTarget, setSelectedTarget] = useState<SearchTarget>("title");
+  const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -64,31 +72,52 @@ export default function DetailSearchModal({
     };
   }, [isDropdownOpen]);
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      const trimmedQuery = searchQuery.trim();
+      router.push(
+        `/?target=${selectedTarget}&q=${encodeURIComponent(trimmedQuery)}`,
+      );
+      setSearchQuery("");
+      setIsDropdownOpen(false);
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="absolute top-full right-0 z-50 mt-2 w-[400px]">
-      <div ref={modalRef} className="rounded-lg bg-white px-6 py-9 shadow-lg">
-        {/* 헤더 - 닫기 버튼 */}
-        <div className="absolute top-4 right-4">
-          <button type="button" onClick={onClose}>
-            <Image
-              src="/delete.svg"
-              alt="삭제"
-              width={20}
-              height={20}
-              className="h-4 w-4"
-            />
-          </button>
-        </div>
-
-        {/* 검색 조건 및 입력 필드 */}
-        <DetailSearchForm
+    <form onSubmit={handleSubmit}>
+      <div className="mb-4 flex gap-2">
+        {/* 검색 조건 드롭다운 */}
+        <SearchOption
           isOpen={isOpen}
           onClose={onClose}
           buttonRef={buttonRef}
+          selectedTarget={selectedTarget}
+          setSelectedTarget={setSelectedTarget}
         />
+
+        {/* 검색어 입력 필드 */}
+        <div className="flex-1">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            placeholder="검색어 입력"
+            className={`h-10 px-2 ${SELECTED_CLASSNAME} ${INPUT_CLASSNAME}`}
+          />
+        </div>
       </div>
-    </div>
+
+      {/* 검색하기 버튼 */}
+      <button
+        type="submit"
+        className={`w-full bg-primary text-white ${BUTTON_CLASSNAME}`}
+      >
+        검색하기
+      </button>
+    </form>
   );
 }

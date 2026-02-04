@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BookList from "@/app/components/book/BookList";
 import PageLayout from "@/app/components/layout/PageLayout";
 import Empty from "@/app/components/ui/Empty";
 import Summary from "@/app/components/ui/Summary";
+import BookList from "@/app/container/book/BookList";
 import type { BookDocument } from "@/app/types/book";
 import { getFavoritesFromStorage } from "@/lib/storage";
 
